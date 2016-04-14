@@ -1,0 +1,121 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.fd_Dice
+{
+  width: 100%;
+  margin-top: 50px;
+}
+
+#loginModal
+{
+
+}
+
+#title
+{
+  background-color: white;
+  color: black;
+  text-align: center;
+}
+
+#subtitle
+{
+  color: #9A9DAB;
+}
+
+#intro
+{
+  text-align: center;
+}
+
+#rollButton
+{
+  /*width: 50%;*/
+}
+
+#rollTable
+{
+  width: 70%;
+}
+
+.fd_Title
+{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: 300px;
+}
+
+.fd_Results
+{
+  color: #365C91;
+}
+
+#statsTable
+{
+  width: 70%
+}
+
+#saveButton
+{
+  position: absolute;
+  top: 1800% !important;
+  width: 45%;
+  text-align: center;
+}
+
+#saveField
+{
+
+}
+
+#modalButton
+{
+  /*background: #436d99 !important;*/
+  /*background: #FFB514;*/
+  background: #E8A413;
+  border: 0px solid black;
+}
+
+#regFields
+{
+  width: 60%;
+  padding-left: 40%;
+}
+
+#regBackButton
+{
+  width: 30%;
+}
+
+#regSubmitButton
+{
+  width: 30%;
+}
+
+#adjLog0
+{
+  font-size: 18px;
+  color: #FC822B
+}
+
+#aboutText
+{
+  text-align: center;
+}
+

@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js" charset="utf-8"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Bootswatch Style -->
+    <link rel="stylesheet" href="bootstrap.min.css"
+
+    <title></title>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <!-- NAVBAR -->
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <!-- Home Button -->
+                    <button type="button" class="navbar-toggle collapsed">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="home.html">Home</a>
+                </div>
+                <!-- Other Nav Buttons -->
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="about.html">How it works</a></li>
+                        <li class="active"><a href="account.html">Create Account</a></li>
+                        <!-- <li class="active"><a href="sessions.html">Manage Sessions</a></li> -->
+                        <!-- Login Modal -->
+                        <li>
+                            <button id="modalButton" type="button" class="btn btn-info btn-lg active" data-toggle="modal" data-target="#loginModal">Log In</button>
+                            <div id="loginModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class=modal-title>Log In</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div id="loginFields" class="form-group">
+                                                <label class="control-label">Username:</label>
+                                                <input class="form-control" placeholder="" type="text">
+                                                <label class="control-label">Password:</label>
+                                                <input class="form-control" placeholder="" type="password">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Log In</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- TITLE TEXT & IMAGES -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="http://images.clipartpanda.com/1-dice-clipart-yikpbxkiE.png" class="fd_Dice">
+                </div>
+                <div class="col-md-6">
+                    <div id="title" class="jumbotron">
+                        <h1>How it works</h1>
+                        <p id="subtitle">
+                            <!-- subtitle -->
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <img src="http://images.clipartpanda.com/1-dice-clipart-yikpbxkiE.png" class="fd_Dice">
+                </div>
+            </div>
+        </div>
+
+        <p id="aboutText">
+            This algorithm normalizes dice rolls with two dice.  This means that it will prevent numbers from being rolled too often.<br><br>
+
+            When rolling two dice, certain numbers are more likely to be rolled than others.  This is due to the way the numbers add up.  For example, there are six different ways to roll a seven (1+6, 2+5, 3+4, 4+3, 5+2, 6+1), but only one way to roll a two (1+1).<br><br>
+
+            This algorithm works by assigning a tolerance value to each possible roll result based on the natural probability of rolling that number with two dice.  If the tolerance for a number is exceeded (the number is rolled too many times without other numbers being rolled first) the number will be rerolled until a number whose tolerance has not been exceeded is rolled.
+        </p>
+
+    </div> <!-- End Main Container -->
+</body>

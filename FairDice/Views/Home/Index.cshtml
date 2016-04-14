@@ -1,0 +1,308 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js" charset="utf-8"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <!-- Bootswatch Style -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    <title>Fair Dice</title>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <!-- NAVBAR -->
+        @*<nav class="navbar navbar-inverse">
+            <div class="container-fluid">*@
+                
+                <!-- Other Nav Buttons -->
+                @*<div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="~/Views/about.html">How it works</a></li>*@
+                        @*<li class="active"><a href="#">Create Account</a></li>*@
+                        <!-- <li class="active"><a href="sessions.html">Manage Sessions</a></li> -->
+                        <!-- Login Modal -->
+                        @*<li>
+                            <button id="modalButton" type="button" class="btn btn-info btn-lg active" data-toggle="modal" data-target="#loginModal">Log In</button>
+                            <div id="loginModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class=modal-title>Log In</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div id="loginFields" class="form-group">
+                                                <label class="control-label">Username:</label>
+                                                <input class="form-control" placeholder="" type="text">
+                                                <label class="control-label">Password:</label>
+                                                <input class="form-control" placeholder="" type="password">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Log In</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>*@
+                    @*</ul>
+                </div>
+            </div>
+        </nav>*@
+
+        <!-- TITLE TEXT & IMAGES -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="http://images.clipartpanda.com/1-dice-clipart-yikpbxkiE.png" class="fd_Dice">
+                </div>
+                <div class="col-md-6">
+                    <div id="title" class="jumbotron">
+                        <h1>Fair Dice</h1>
+                        <p id="subtitle">
+                            Softening the blow of RNG
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <img src="http://images.clipartpanda.com/1-dice-clipart-yikpbxkiE.png" class="fd_Dice">
+                </div>
+            </div>
+        </div>
+
+        <!-- INTRO -->
+        <div id="intro">
+            <h3>This is dice roll normalizer.</h3>
+            <h5>The algorithm will reduce variance in dice rolls while retaining the natural roll probabilities of two dice.</h5>
+
+            @*<a href="#" onclick="showAbout()">How it works</a>*@
+            <input type="button" class="btn" onclick="toggleAbout()" value="How it works" />
+
+            <div id="aboutDiv">
+                <p id="aboutText">
+
+                </p>
+            </div>
+
+        </div>
+        <br><br><br>
+
+        <!-- MAIN CONTENT CONTAINER -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <!-- Empty Space -->
+                </div>
+
+                <!-- Roller Interface -->
+                <div class="col-md-6">
+                    <div id="buttons">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <a id="rollButton" class="btn btn-success btn-block" onclick="onRoll()">Roll</a>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="radio">
+                                                <label data-toggle="popover" title="Preserves the natural probabilities for two dice (e.g. 6 is more common than 2) while normalizing rolls.">
+                                                    <input id="naturalProb" type="radio" name="options" value="Natural Probabilities" checked>
+                                                    Natural Probabilities
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="radio">
+                                                <label data-toggle="popover" title="Equal probability of rolling all numbers, 2-12. Still normalizes rolls.">
+                                                    <input id="equalProb" type="radio" name="options" value="Equal Probabilities">
+                                                    Equal Probabilities
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="radio">
+                                                <label data-toggle="popover" title="Natural dice rolls with no normalization.">
+                                                    <input id="noAdjust" type="radio" name="options" value="No Adjustment">
+                                                    No Adjustment
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Logging Table -->
+                    <div class="container">
+                        <h2 class="fd_Title">Roll Log</h2>
+
+                        <table id="rollTable" class="table">
+                            <thead>
+                                <tr>
+                                    <th>Roll Result</th>
+                                </tr>
+                            </thead>
+                            <tbody class="fd_Results">
+                                <tr>
+                                    <td id="adjLog0">--</td>
+                                </tr>
+                                <tr>
+                                    <td id="adjLog1">--</td>
+                                </tr>
+                                <tr>
+                                    <td id="adjLog2">--</td>
+                                </tr>
+                                <tr>
+                                    <td id="adjLog3">--</td>
+                                </tr>
+                                <tr>
+                                    <td id="adjLog4">--</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <input class="btn btn-warning" type="button" value="Reset" onclick="resetAll()" />
+                    </div>
+
+                    <!-- Statistics Table -->
+                    <div class="container">
+                        <h2 class="fd_Title">Statistics</h2>
+                        <table id="statsTable" class="table">
+                            <thead>
+                                <tr>
+                                    <th>Roll Result</th>
+                                    <th>Times Rolled (Adjusted)</th>
+                                    <th>Times Rolled (Actual)</th>
+                                    <th>Total Re-rolls</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2</td>
+                                    <td id="twoAdj">--</td>
+                                    <td id="twoAct">--</td>
+                                    <td id="twoRR">--</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td id="threeAdj">--</td>
+                                    <td id="threeAct">--</td>
+                                    <td id="threeRR">--</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td id="fourAdj">--</td>
+                                    <td id="fourAct">--</td>
+                                    <td id="fourRR">--</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td id="fiveAdj">--</td>
+                                    <td id="fiveAct">--</td>
+                                    <td id="fiveRR">--</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td id="sixAdj">--</td>
+                                    <td id="sixAct">--</td>
+                                    <td id="sixRR">--</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td id="sevenAdj">--</td>
+                                    <td id="sevenAct">--</td>
+                                    <td id="sevenRR">--</td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td id="eightAdj">--</td>
+                                    <td id="eightAct">--</td>
+                                    <td id="eightRR">--</td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td id="nineAdj">--</td>
+                                    <td id="nineAct">--</td>
+                                    <td id="nineRR">--</td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td id="tenAdj">--</td>
+                                    <td id="tenAct">--</td>
+                                    <td id="tenRR">--</td>
+                                </tr>
+                                <tr>
+                                    <td>11</td>
+                                    <td id="elevenAdj">--</td>
+                                    <td id="elevenAct">--</td>
+                                    <td id="elevenRR">--</td>
+                                </tr>
+                                <tr>
+                                    <td>12</td>
+                                    <td id="twelveAdj">--</td>
+                                    <td id="twelveAct">--</td>
+                                    <td id="twelveRR">--</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- NOTE: Unimplemented -->
+                    <!-- 'Save Session' Interface -->
+                    <!-- <div class="container">
+                      <h2 class="fd_Title">Save Session</h2>
+                      <div class="row">
+                        <div class="col-md-5">
+                          <div id="saveField" class="form-group">
+                            <label class="control-label">Session Name</label>
+                            <input class="form-control" placeholder="Enter a name for this session..." type="text">
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <a href="#" id="saveButton" class="btn-primary btn-lg">Save</a>
+                        </div>
+                      </div>
+                    </div> -->
+                    <!-- Link To 'Manage Sessions' -->
+                    <!-- <div class="container">
+                      <div class="nav nav-pills">
+                        <li class="active"><a href="#">Manage Saved Sessions</a></li>
+                      </div>
+                    </div> -->
+
+                </div> <!-- End Main Content Column -->
+
+                <div class="col-md-4">
+                    <!-- Empty Space -->
+                </div>
+
+            </div>
+
+            <div id="bottomWhiteSpace">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+
+        </div> <!-- END MAIN CONTENT CONTAINER -->
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js" charset="utf-8"></script>
+    <script src="~/Scripts/app.js"></script>
+</body>
+</html>
